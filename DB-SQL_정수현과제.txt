@@ -1,0 +1,19 @@
+1번
+Select CustomerID, SUM(quantity*price) as Total
+From Orders as O
+Join OrderDetails as R
+On O.OrderID = R.OrderID
+Join Products as P
+ON R.ProductID = P.ProductID
+GROUP BY CustomerID
+ORDER BY Total;
+
+2번
+SELECT CategoryName, SUM(O.quantity) AS Total, SUM(O.quantity*P.price) AS TotalSales
+FROM Categories as C
+JOIN Products as P
+ON C.CategoryID = P.CategoryID
+JOIN OrderDetails as O
+ON O.ProductID = P.ProductID
+GROUP BY C.Categoryname
+HAVING SUM(O.quantity) >=2000;
